@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Overlay Popup -->
+    <div id="popupOverlay" class="popup-overlay">
+        <div class="popup-container">
+            <div class="popup-content">
+                <div class="popup-icon">🚧</div>
+                <h2>Website Sedang Dalam Pengembangan</h2>
+                <p>Maaf, website ini masih dalam tahap pengembangan dan belum dapat diakses sepenuhnya.</p>
+                <p class="popup-subtext">Harap kembali lagi nanti untuk melihat versi lengkapnya.</p>
+                <button onclick="closePopup()" class="btn btn-primary">Saya Mengerti</button>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -65,5 +78,28 @@
     <footer>
         <p>&copy; 2026 slmnh66. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Function to close popup and allow access
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            // Enable all links after popup is closed
+            document.querySelectorAll('a').forEach(link => {
+                link.style.pointerEvents = 'auto';
+            });
+        }
+
+        // Block all links initially
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show popup
+            document.getElementById('popupOverlay').style.display = 'flex';
+            
+            // Disable all links
+            document.querySelectorAll('a').forEach(link => {
+                link.style.pointerEvents = 'none';
+                link.style.opacity = '0.6';
+            });
+        });
+    </script>
 </body>
 </html>
