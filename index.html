@@ -83,7 +83,6 @@
                     <h2 class="skills__subtitle">Profesional Skills</h2>
                     <p class="skills__text">Saya memiliki pengalaman dalam berbagai bidang kreatif dan teknis.</p>
                     
-                    <!-- Skill 1 -->
                     <div class="skills__data">
                         <div class="skills__names">
                             <i class='bx bx-camera skills__icon'></i>
@@ -91,7 +90,6 @@
                         </div>
                     </div>
                     
-                    <!-- Skill 2 -->
                     <div class="skills__data">
                         <div class="skills__names">
                             <i class='bx bx-palette skills__icon'></i>
@@ -99,7 +97,6 @@
                         </div>
                     </div>
                     
-                    <!-- Skill 3 -->
                     <div class="skills__data">
                         <div class="skills__names">
                             <i class='bx bxl-adobe skills__icon'></i>
@@ -107,7 +104,6 @@
                         </div>
                     </div>
                     
-                    <!-- Skill 4 -->
                     <div class="skills__data">
                         <div class="skills__names">
                             <i class='bx bx-laptop skills__icon'></i>
@@ -115,52 +111,168 @@
                         </div>
                     </div>
                 </div>
-
                 <div>
                     <img src="assets/img/work1.jpg" alt="" class="skills__img">
                 </div>
             </div>
         </section>
 
-        <!--===== WORK (Dengan Filter & Sub-Kategori) =====-->
+        <!--===== WORK MENU (Induk) =====-->
         <section class="work section" id="work">
             <h2 class="section-title">Work</h2>
-
-            <!-- Gallery Grid -->
-            <div class="work__container bd-grid" id="work-gallery">
-                <div class="work__item" data-category="photography" data-subcategory="wedding">
+            <div class="work__container bd-grid" id="work-menu">
+                <div class="work__item" onclick="openCategory('photography')">
                     <a href="#" class="work__img">
-                        <img src="assets/img/work3.jpg" alt="Wedding Photography">
+                        <img src="assets/img/work3.jpg" alt="Photography">
                         <div class="work__overlay">
                             <span class="work__title">Photography</span>
                         </div>
                     </a>
                 </div>
-                <div class="work__item" data-category="photography" data-subcategory="wedding">
+                <div class="work__item" onclick="openCategory('design')">
                     <a href="#" class="work__img">
-                        <img src="assets/img/work4.jpg" alt="Wedding Photography">
-                        <div class="work__overlay">
-                            <span class="work__title">WEB Design</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="work__item" data-category="photography" data-subcategory="portrait">
-                    <a href="#" class="work__img">
-                        <img src="assets/img/work2.jpg" alt="Portrait Photography">
+                        <img src="assets/img/work4.jpg" alt="Design Graphic">
                         <div class="work__overlay">
                             <span class="work__title">Design Graphic</span>
                         </div>
                     </a>
                 </div>
-
-                <!-- Videography -->
-                <div class="work__item" data-category="video" data-subcategory="all">
+                <div class="work__item" onclick="openCategory('video')">
                     <a href="#" class="work__img">
                         <img src="assets/img/work5.jpg" alt="Videography">
                         <div class="work__overlay">
                             <span class="work__title">Videography</span>
                         </div>
                     </a>
+                </div>
+                <div class="work__item" onclick="openCategory('web')">
+                    <a href="#" class="work__img">
+                        <img src="assets/img/work1.jpg" alt="Web Design">
+                        <div class="work__overlay">
+                            <span class="work__title">Web Design</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!--===== HALAMAN PHOTOGRAPHY (Virtual Page) =====-->
+        <section class="work section" id="page-photography" style="display:none;">
+            <div class="bd-grid">
+                <div class="breadcrumb">
+                    🏠 <a href="#home" onclick="goHome()">Home</a> / 📂 <a href="#work" onclick="goWork()">Work</a> / 📸 Photography
+                </div>
+                <h2 class="section-title" style="margin-top: 2rem;">Photography</h2>
+                <div class="work__container bd-grid">
+                    <!-- Ganti link di bawah ini dengan Direct Link Imgur Anda -->
+                    <div class="work__item">
+                        <a href="#" class="work__img">
+                            <img src="https://i.imgur.com/PLACEHOLDER1.jpg" alt="Wedding 1">
+                            <div class="work__overlay"><span class="work__title">Wedding</span></div>
+                        </a>
+                    </div>
+                    <div class="work__item">
+                        <a href="#" class="work__img">
+                            <img src="https://i.imgur.com/PLACEHOLDER2.jpg" alt="Wedding 2">
+                            <div class="work__overlay"><span class="work__title">Wedding</span></div>
+                        </a>
+                    </div>
+                    <div class="work__item">
+                        <a href="#" class="work__img">
+                            <img src="https://i.imgur.com/PLACEHOLDER3.jpg" alt="Portrait 1">
+                            <div class="work__overlay"><span class="work__title">Portrait</span></div>
+                        </a>
+                    </div>
+                    <div class="work__item">
+                        <a href="#" class="work__img">
+                            <img src="https://i.imgur.com/PLACEHOLDER4.jpg" alt="Portrait 2">
+                            <div class="work__overlay"><span class="work__title">Portrait</span></div>
+                        </a>
+                    </div>
+                </div>
+                <div style="text-align:center; margin-top: 2rem;">
+                    <button class="button" onclick="goWork()">← Back to Work</button>
+                </div>
+            </div>
+        </section>
+
+        <!--===== HALAMAN DESIGN GRAPHIC (Virtual Page) =====-->
+        <section class="work section" id="page-design" style="display:none;">
+            <div class="bd-grid">
+                <div class="breadcrumb">
+                    🏠 <a href="#home" onclick="goHome()">Home</a> / 📂 <a href="#work" onclick="goWork()">Work</a> / 🎨 Design Graphic
+                </div>
+                <h2 class="section-title" style="margin-top: 2rem;">Design Graphic</h2>
+                <div class="work__container bd-grid">
+                    <div class="work__item">
+                        <a href="#" class="work__img">
+                            <img src="https://i.imgur.com/PLACEHOLDER5.jpg" alt="Branding">
+                            <div class="work__overlay"><span class="work__title">Branding</span></div>
+                        </a>
+                    </div>
+                    <div class="work__item">
+                        <a href="#" class="work__img">
+                            <img src="https://i.imgur.com/PLACEHOLDER6.jpg" alt="Poster">
+                            <div class="work__overlay"><span class="work__title">Poster</span></div>
+                        </a>
+                    </div>
+                </div>
+                <div style="text-align:center; margin-top: 2rem;">
+                    <button class="button" onclick="goWork()">← Back to Work</button>
+                </div>
+            </div>
+        </section>
+
+        <!--===== HALAMAN VIDEOGRAPHY (Virtual Page) =====-->
+        <section class="work section" id="page-video" style="display:none;">
+            <div class="bd-grid">
+                <div class="breadcrumb">
+                    🏠 <a href="#home" onclick="goHome()">Home</a> / 📂 <a href="#work" onclick="goWork()">Work</a> / 🎥 Videography
+                </div>
+                <h2 class="section-title" style="margin-top: 2rem;">Videography</h2>
+                <div class="work__container bd-grid">
+                    <div class="work__item">
+                        <a href="#" class="work__img">
+                            <img src="https://i.imgur.com/PLACEHOLDER7.jpg" alt="Commercial">
+                            <div class="work__overlay"><span class="work__title">Commercial</span></div>
+                        </a>
+                    </div>
+                    <div class="work__item">
+                        <a href="#" class="work__img">
+                            <img src="https://i.imgur.com/PLACEHOLDER8.jpg" alt="Event">
+                            <div class="work__overlay"><span class="work__title">Event</span></div>
+                        </a>
+                    </div>
+                </div>
+                <div style="text-align:center; margin-top: 2rem;">
+                    <button class="button" onclick="goWork()">← Back to Work</button>
+                </div>
+            </div>
+        </section>
+
+        <!--===== HALAMAN WEB DESIGN (Virtual Page) =====-->
+        <section class="work section" id="page-web" style="display:none;">
+            <div class="bd-grid">
+                <div class="breadcrumb">
+                    🏠 <a href="#home" onclick="goHome()">Home</a> / 📂 <a href="#work" onclick="goWork()">Work</a> / 💻 Web Design
+                </div>
+                <h2 class="section-title" style="margin-top: 2rem;">Web Design</h2>
+                <div class="work__container bd-grid">
+                    <div class="work__item">
+                        <a href="#" class="work__img">
+                            <img src="https://i.imgur.com/PLACEHOLDER9.jpg" alt="Landing Page">
+                            <div class="work__overlay"><span class="work__title">Landing Page</span></div>
+                        </a>
+                    </div>
+                    <div class="work__item">
+                        <a href="#" class="work__img">
+                            <img src="https://i.imgur.com/PLACEHOLDER10.jpg" alt="Dashboard">
+                            <div class="work__overlay"><span class="work__title">Dashboard</span></div>
+                        </a>
+                    </div>
+                </div>
+                <div style="text-align:center; margin-top: 2rem;">
+                    <button class="button" onclick="goWork()">← Back to Work</button>
                 </div>
             </div>
         </section>
@@ -180,21 +292,21 @@
     </main>
 
     <!--===== FOOTER =====-->
-<footer class="footer">
-    <p class="footer__title">Salman</p>
-    <div class="footer__social">
-        <a href="https://linkedin.com/in/muhammad-salman-hakim-465927421" target="_blank" class="footer__icon">
-            <i class='bx bxl-linkedin'></i>
-        </a>
-        <a href="https://github.com/slmnh66-sudo" target="_blank" class="footer__icon">
-            <i class='bx bxl-github'></i>
-        </a>
-        <a href="https://youtube.com/@sb-ncm" target="_blank" class="footer__icon">
-            <i class='bx bxl-youtube'></i>
-        </a>
-    </div>
-    <p class="footer__copy">&#169; Salman. All rights reserved</p>
-</footer>
+    <footer class="footer">
+        <p class="footer__title">Salman</p>
+        <div class="footer__social">
+            <a href="https://linkedin.com/in/muhammad-salman-hakim-465927421" target="_blank" class="footer__icon">
+                <i class='bx bxl-linkedin'></i>
+            </a>
+            <a href="https://github.com/slmnh66-sudo" target="_blank" class="footer__icon">
+                <i class='bx bxl-github'></i>
+            </a>
+            <a href="https://youtube.com/@sb-ncm" target="_blank" class="footer__icon">
+                <i class='bx bxl-youtube'></i>
+            </a>
+        </div>
+        <p class="footer__copy">&#169; Salman. All rights reserved</p>
+    </footer>
 
     <!--===== SCROLL REVEAL =====-->
     <script src="https://unpkg.com/scrollreveal"></script>
