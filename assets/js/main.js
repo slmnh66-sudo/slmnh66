@@ -45,23 +45,19 @@ const subfilterButtons = document.querySelectorAll('.work__subfilter');
 // Main Category Filter
 filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        // Remove active class from all filters
         filterButtons.forEach(b => b.classList.remove('active-filter'));
         btn.classList.add('active-filter');
 
         const filterValue = btn.getAttribute('data-filter');
 
-        // Show/Hide subfilter for Photography
         if(filterValue === 'photography') {
             subfilterContainer.style.display = 'flex';
-            // Reset subfilter to 'All'
             subfilterButtons.forEach(b => b.classList.remove('active-subfilter'));
             document.querySelector('.work__subfilter[data-subfilter="all"]').classList.add('active-subfilter');
         } else {
             subfilterContainer.style.display = 'none';
         }
 
-        // Filter items
         workItems.forEach(item => {
             const category = item.getAttribute('data-category');
             if(filterValue === 'all' || category === filterValue) {
@@ -81,12 +77,10 @@ subfilterButtons.forEach(btn => {
 
         const subfilterValue = btn.getAttribute('data-subfilter');
 
-        // Filter items only within photography category
         workItems.forEach(item => {
             const category = item.getAttribute('data-category');
             const subcategory = item.getAttribute('data-subcategory');
 
-            // Only process photography items
             if(category === 'photography') {
                 if(subfilterValue === 'all' || subcategory === subfilterValue) {
                     item.classList.remove('hide');
@@ -98,7 +92,7 @@ subfilterButtons.forEach(btn => {
     });
 });
 
-/*===== SCROLL REVEAL ANIMATION =====*/
+/*==================== SCROLL REVEAL ANIMATION ====================*/
 const sr = ScrollReveal({
     origin: 'top',
     distance: '60px',
@@ -110,3 +104,36 @@ sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{});
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
 sr.reveal('.skills__data, .work__item, .contact__input',{interval: 200});
+
+/*==================== SEND TO GMAIL VIA MAILTO ====================*/
+function sendToGmail(event) {
+    event.preventDefault(); // Mencegah halaman reload
+
+    // Ambil nilai dari input form
+    const name = document.getElementById('contact-name').value;
+    const email = document.getElementById('contact-email').value;
+    const message = document.getElementById('contact-message').value;
+
+    // Validasi sederhana (jika kosong tidak akan dikirim)
+    if (!name || !email || !message) {
+        alert("Harap isi semua kolom (Nama, Email, dan Pesan)!");
+        return;
+    }
+
+    // Susun body email (gunakan encodeURIComponent untuk karakter spesial)
+    const subject = encodeURIComponent("Portfolio Contact dari " + name);
+    const body = encodeURIComponent(
+        "Halo Salman,\n\n" +
+        "Saya menghubungi Anda melalui portofolio Anda.\n\n" +
+        "Nama Pengirim: " + name + "\n" +
+        "Email Pengirim: " + email + "\n\n" +
+        "Pesan:\n" + message + "\n\n" +
+        "Terima kasih."
+    );
+
+    // Buat URL mailto lengkap
+    const mailtoLink = `mailto:slmnh66@gmail.com?subject=${subject}&body=${body}`;
+
+    // Arahkan ke Gmail
+    window.location.href = mailtoLink;
+}
