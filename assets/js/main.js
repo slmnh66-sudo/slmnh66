@@ -105,7 +105,7 @@ sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400
 sr.reveal('.home__social-icon',{ interval: 200}); 
 sr.reveal('.skills__data, .work__item, .contact__input',{interval: 200});
 
-/*==================== SEND TO GMAIL VIA MAILTO ====================*/
+/*==================== SEND TO GMAIL VIA WEB (TAB BARU) ====================*/
 function sendToGmail(event) {
     event.preventDefault(); // Mencegah halaman reload
 
@@ -114,13 +114,13 @@ function sendToGmail(event) {
     const email = document.getElementById('contact-email').value;
     const message = document.getElementById('contact-message').value;
 
-    // Validasi sederhana (jika kosong tidak akan dikirim)
+    // Validasi sederhana
     if (!name || !email || !message) {
         alert("Harap isi semua kolom (Nama, Email, dan Pesan)!");
         return;
     }
 
-    // Susun body email (gunakan encodeURIComponent untuk karakter spesial)
+    // Susun subject dan body
     const subject = encodeURIComponent("Portfolio Contact dari " + name);
     const body = encodeURIComponent(
         "Halo Salman,\n\n" +
@@ -131,9 +131,9 @@ function sendToGmail(event) {
         "Terima kasih."
     );
 
-    // Buat URL mailto lengkap
-    const mailtoLink = `mailto:slmnh66@gmail.com?subject=${subject}&body=${body}`;
+    // Buat URL Gmail Web (bukan mailto:)
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=slmnh66@gmail.com&su=${subject}&body=${body}`;
 
-    // Arahkan ke Gmail
-    window.location.href = mailtoLink;
+    // Buka di tab baru (bekerja di Android dan PC)
+    window.open(gmailUrl, '_blank');
 }
