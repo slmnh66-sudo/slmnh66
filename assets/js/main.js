@@ -36,60 +36,77 @@ const scrollActive = () =>{
 }
 window.addEventListener('scroll', scrollActive)
 
-/*==================== WORK FILTER & SUB-FILTER ====================*/
-const workItems = document.querySelectorAll('.work__item');
-const filterButtons = document.querySelectorAll('.work__filter');
-const subfilterContainer = document.getElementById('subfilter-wedding');
-const subfilterButtons = document.querySelectorAll('.work__subfilter');
+/*==================== ROUTING: BUKA KATEGORI WORK ====================*/
+function openCategory(category) {
+    // Sembunyikan semua section
+    document.querySelectorAll('.home, .about, .skills, #work, #contact, #page-photography, #page-design, #page-video, #page-web').forEach(el => {
+        el.style.display = 'none';
+    });
 
-// Main Category Filter
-filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        filterButtons.forEach(b => b.classList.remove('active-filter'));
-        btn.classList.add('active-filter');
+    // Tampilkan halaman kategori yang dipilih
+    document.getElementById('page-' + category).style.display = 'block';
 
-        const filterValue = btn.getAttribute('data-filter');
+    // Scroll ke atas halaman
+    window.scrollTo(0, 0);
 
-        if(filterValue === 'photography') {
-            subfilterContainer.style.display = 'flex';
-            subfilterButtons.forEach(b => b.classList.remove('active-subfilter'));
-            document.querySelector('.work__subfilter[data-subfilter="all"]').classList.add('active-subfilter');
-        } else {
-            subfilterContainer.style.display = 'none';
+    // Update URL di browser (agar bisa back)
+    history.pushState({page: category}, '', '#' + category);
+}
+
+/*==================== ROUTING: KEMBALI KE WORK ====================*/
+function goWork() {
+    // Sembunyikan semua halaman kategori
+    document.getElementById('page-photography').style.display = 'none';
+    document.getElementById('page-design').style.display = 'none';
+    document.getElementById('page-video').style.display = 'none';
+    document.getElementById('page-web').style.display = 'none';
+
+    // Tampilkan section Work utama
+    document.getElementById('work').style.display = 'block';
+    document.querySelector('.home').style.display = 'block';
+    document.querySelector('.about').style.display = 'block';
+    document.querySelector('.skills').style.display = 'block';
+    document.getElementById('contact').style.display = 'block';
+
+    // Scroll ke Work
+    document.getElementById('work').scrollIntoView();
+
+    // Update URL
+    history.pushState({page: 'work'}, '', '#work');
+}
+
+/*==================== ROUTING: KEMBALI KE HOME ====================*/
+function goHome() {
+    // Tampilkan semua section utama
+    document.querySelector('.home').style.display = 'block';
+    document.querySelector('.about').style.display = 'block';
+    document.querySelector('.skills').style.display = 'block';
+    document.getElementById('work').style.display = 'block';
+    document.getElementById('contact').style.display = 'block';
+
+    // Sembunyikan halaman kategori
+    document.getElementById('page-photography').style.display = 'none';
+    document.getElementById('page-design').style.display = 'none';
+    document.getElementById('page-video').style.display = 'none';
+    document.getElementById('page-web').style.display = 'none';
+
+    // Scroll ke Home
+    document.getElementById('home').scrollIntoView();
+
+    // Update URL
+    history.pushState({page: 'home'}, '', '#home');
+}
+
+/*==================== HANDLE BACK BUTTON BROWSER ====================*/
+window.addEventListener('popstate', (event) => {
+    if (event.state) {
+        const page = event.state.page;
+        if (page === 'home') goHome();
+        else if (page === 'work') goWork();
+        else if (['photography', 'design', 'video', 'web'].includes(page)) {
+            openCategory(page);
         }
-
-        workItems.forEach(item => {
-            const category = item.getAttribute('data-category');
-            if(filterValue === 'all' || category === filterValue) {
-                item.classList.remove('hide');
-            } else {
-                item.classList.add('hide');
-            }
-        });
-    });
-});
-
-// Sub-Category Filter (only for Photography)
-subfilterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        subfilterButtons.forEach(b => b.classList.remove('active-subfilter'));
-        btn.classList.add('active-subfilter');
-
-        const subfilterValue = btn.getAttribute('data-subfilter');
-
-        workItems.forEach(item => {
-            const category = item.getAttribute('data-category');
-            const subcategory = item.getAttribute('data-subcategory');
-
-            if(category === 'photography') {
-                if(subfilterValue === 'all' || subcategory === subfilterValue) {
-                    item.classList.remove('hide');
-                } else {
-                    item.classList.add('hide');
-                }
-            }
-        });
-    });
+    }
 });
 
 /*==================== SCROLL REVEAL ANIMATION ====================*/
@@ -107,20 +124,17 @@ sr.reveal('.skills__data, .work__item, .contact__input',{interval: 200});
 
 /*==================== SEND TO GMAIL VIA WEB (TAB BARU) ====================*/
 function sendToGmail(event) {
-    event.preventDefault(); // Mencegah halaman reload
+    event.preventDefault();
 
-    // Ambil nilai dari input form
     const name = document.getElementById('contact-name').value;
     const email = document.getElementById('contact-email').value;
     const message = document.getElementById('contact-message').value;
 
-    // Validasi sederhana
     if (!name || !email || !message) {
         alert("Harap isi semua kolom (Nama, Email, dan Pesan)!");
         return;
     }
 
-    // Susun subject dan body
     const subject = encodeURIComponent("Portfolio Contact dari " + name);
     const body = encodeURIComponent(
         "Halo Salman,\n\n" +
@@ -131,9 +145,6 @@ function sendToGmail(event) {
         "Terima kasih."
     );
 
-    // Buat URL Gmail Web (bukan mailto:)
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=slmnh66@gmail.com&su=${subject}&body=${body}`;
-
-    // Buka di tab baru (bekerja di Android dan PC)
     window.open(gmailUrl, '_blank');
 }
