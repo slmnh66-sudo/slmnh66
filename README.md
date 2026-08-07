@@ -1,23 +1,41 @@
-# CV Website - slmnh66
+# 🚀 One Page Creative Portfolio
 
-Website CV pribadi dengan nuansa hitam-putih yang elegan.
+![Portfolio Preview](assets/img/work1.jpg) <!-- Ganti dengan screenshot website Anda nanti -->
 
-## Fitur
-- Halaman Utama (Profil, Bio, Skill)
-- Halaman Portofolio dengan 7 kategori
-- Halaman Kontak dengan informasi lengkap
-- Responsive Design
-- Nuansa hitam-putih yang profesional
+> **Portofolio One Page** modern dengan sistem **Filter Kategori (Photography, Design Graphic, Videography, Web Design)** dan **Sub-kategori (Wedding, Portrait)**. Dibuat dengan HTML, CSS, dan JavaScript murni tanpa framework berat.
 
-## Teknologi
-- HTML5
-- CSS3 (Custom)
-- Vercel (Deployment)
+---
 
-## Domain
-- slmnh66 (merepresentasikan alamat Gmail: slmnh66@gmail.com)
+## ✨ Fitur Utama
 
-## Cara Deploy ke Vercel
-1. Upload semua file ke repository GitHub
-2. Hubungkan repository ke Vercel
-3. Deploy otomatis
+- ✅ **Single Page Application (SPA)** – Semua konten dalam satu file HTML.
+- ✅ **Responsive Design** – Tampilan optimal di Desktop, Tablet, dan Mobile.
+- ✅ **Navbar Sticky & Active Link** – Navigasi otomatis menyorot section yang sedang dibuka.
+- ✅ **Mobile Hamburger Menu** – Menu navigasi yang rapi di perangkat kecil.
+- ✅ **4 Kategori Work** – Photography, Design Graphic, Videography, Web Design.
+- ✅ **Sub-kategori Photography** – Wedding & Portrait (muncul otomatis saat kategori Photography dipilih).
+- ✅ **Efek Fade Overlay** – Saat cursor diarahkan ke gambar, muncul teks keterangan dengan efek fade halus.
+- ✅ **Scroll Reveal Animation** – Elemen muncul perlahan saat di-scroll ke bawah.
+- ✅ **Contact Form** – Formulir kontak siap pakai.
+- ✅ **Social Media Integration** – Tautan ke LinkedIn, Behance, GitHub, dll.
+
+---
+
+## 📁 Struktur Folder
+
+```bash
+portfolio-project/
+├── assets/
+│   ├── css/
+│   │   └── styles.css          # File CSS utama
+│   ├── img/
+│   │   ├── perfil.png          # Foto profil (Home)
+│   │   ├── about.jpg           # Foto tentang saya (About)
+│   │   ├── work1.jpg ~ work6.jpg  # Gambar portfolio (Work)
+│   │   └── ... (gambar lainnya)
+│   ├── js/
+│   │   └── main.js             # JavaScript untuk navigasi & filter
+│   └── scss/
+│       └── styles.scss         # Source SCSS (opsional)
+├── index.html                   # Halaman utama website
+└── README.md                    # Dokumentasi proyek
