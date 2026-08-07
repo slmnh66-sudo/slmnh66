@@ -184,7 +184,7 @@ img { max-width: 100%; height: auto; display: block; }
 .home__img {
   position: absolute;
   right: 0; bottom: 0;
-  width: 200px;
+  width: 260px;
 }
 .home__blob { fill: var(--first-color); }
 .home__blob-img { width: 360px; }
